@@ -1,24 +1,10 @@
 package com.imooc.service;
 
-import java.util.List;
 
-import com.imooc.pojo.SysUser;
+import com.imooc.pojo.User;
 
 public interface UserService {
 
-	public void saveUser(SysUser user) throws Exception;
+	int save(User user);
 
-	public void updateUser(SysUser user);
-
-	public void deleteUser(String userId);
-
-	public SysUser queryUserById(String userId);
-
-	public List<SysUser> queryUserList(SysUser user);
-
-	public List<SysUser> queryUserListPaged(SysUser user, Integer page, Integer pageSize);
-
-	public SysUser queryUserByIdCustom(String userId);
-	
-	public void saveUserTransactional(SysUser user);
 }

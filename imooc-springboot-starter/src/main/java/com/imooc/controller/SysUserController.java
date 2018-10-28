@@ -1,14 +1,16 @@
 package com.imooc.controller;
 
-import java.util.List;
+
+
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
-import com.imooc.pojo.IMoocJSONResult;
-import com.imooc.pojo.SysUser;
-import com.imooc.service.UserService;
+import com.imooc.tasks.Run;
+import com.imooc.utils.WeatherReportByCity;
 
 
 @RestController
@@ -16,57 +18,35 @@ import com.imooc.service.UserService;
 public class SysUserController {
  
 	@Autowired
-	private UserService userService;
+	private StringRedisTemplate strRedis;
+	@Autowired
+	private Run run;
 	
-	@RequestMapping("/getSysUser")
-	public SysUser getSysUser(){
-		SysUser queryUserByIdCustom = userService.queryUserByIdCustom("1001");
-		return queryUserByIdCustom;
-	}
-	
-	@RequestMapping("/aa")
-	public String aa(){
+	@RequestMapping("/index")
+	public ModelAndView aa()  {
+		//String url = "http://v.juhe.cn/sms/send";
+		 //Map params = new HashMap();//请求参数
+        // params.put("mobile","13530263029");//接收短信的手机号码
+        // params.put("tpl_id","106560");//短信模板ID，请参考个人中心短信模板设置
+        // params.put("tpl_value","#code#=520520");//变量名和变量值对。如果你的变量名或者变量值中带有#&=中的任意一个特殊符号，请先分别进行urlencode编码后再传递，<a href="http://www.juhe.cn/news/index/id/50" target="_blank">详细说明></a>
+        // params.put("key","063baa07e7e40c49494ebbc38045d5a7");//应用APPKEY(应用详细页查询)
+         //params.put("dtype","json");//返回数据的格式,xml或json，默认json
+       //  WeatherReportByCity.sendGETRequest(url,params,"utf8");
+        ModelAndView model = new ModelAndView();
+        model.setViewName("/landing");
+		return model;
 		
-		return "hello老何!";
+		//return WeatherReportByCity.excute("深圳");
+	}
+	@RequestMapping("/aa")
+	public String aaa()  {
+		return WeatherReportByCity.excute("深圳");
 	}
 	
-	@RequestMapping("/insert")
-	public IMoocJSONResult z(){
-		try {
-		SysUser sysUser = new SysUser();
-		sysUser.setId("1002");
-		sysUser.setUsername("张三");
-		sysUser.setPassword("123");
-		sysUser.setNickname("可爱的倩倩");
-		userService.saveUser(sysUser);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return IMoocJSONResult.errorMsg(e.getMessage());
-		}
-		return IMoocJSONResult.ok("插入成功！");
+	@RequestMapping("/testRedis")
+	public String testRedis()  {
+		strRedis.opsForValue().set("hh", WeatherReportByCity.excute("深圳"));	
+		return strRedis.opsForValue().get("hh");
 	}
 	
-	@RequestMapping("/delete")
-	public IMoocJSONResult d(){
-		try {
-		userService.deleteUser("1001");
-		} catch (Exception e) {
-			e.printStackTrace();
-			return IMoocJSONResult.errorMsg(e.getMessage());
-		}
-		return IMoocJSONResult.ok("删除成功！");
-	}
-	
-	@RequestMapping("/update")
-	public IMoocJSONResult u(){
-		try {
-			SysUser user = userService.queryUserByIdCustom("1002");
-			user.setUsername("可爱人倩倩");
-			userService.updateUser(user);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return IMoocJSONResult.errorMsg(e.getMessage());
-		}
-		return IMoocJSONResult.ok("修改成功！");
-	}
 }
