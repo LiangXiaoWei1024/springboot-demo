@@ -11,6 +11,10 @@ public class User {
 
     private String password;
 
+    private String phone;
+    
+    private String token;
+
     @Column(name = "carate_time")
     private Date carateTime;
 
@@ -57,6 +61,20 @@ public class User {
     }
 
     /**
+     * @return phone
+     */
+    public String getPhone() {
+        return phone;
+    }
+
+    /**
+     * @param phone
+     */
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    /**
      * @return carate_time
      */
     public Date getCarateTime() {
@@ -69,4 +87,14 @@ public class User {
     public void setCarateTime(Date carateTime) {
         this.carateTime = carateTime;
     }
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+    
+    
 }

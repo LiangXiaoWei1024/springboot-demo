@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import com.imooc.mapper.TbAreaMapper;
 import com.imooc.pojo.TbArea;
 import com.imooc.service.AreaService;
@@ -19,7 +20,6 @@ public class AreaController {
   
 	@Autowired
 	private AreaService areaService;
-	
 	@RequestMapping("/listarea")
 	public Map<?,?> listArea(){
 		Map<Object, Object> hashMap = new HashMap<>();

@@ -1,0 +1,85 @@
+body,html{
+    margin: 0px;
+    padding: 0px;
+}
+.left{
+    float: left;
+}
+.right{
+    float: right;
+}
+
+.clearfix {
+    display: block
+}
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden
+}
+.form-table{
+    margin: 10px 20px ;
+    font-size: 15px !important;
+}
+.form-table tr{
+    height: 35px;
+    line-height: 35px;
+}
+.form-table th{
+    font-weight: normal;
+}
+.form-table td{
+    min-width: 300px;
+}
+.form-table td input,.form-table td select,.form-table td textarea{
+    min-width: 200px;
+}
+
+.menu-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu-list li a .panel-icon {
+    margin-top: -10px;
+}
+
+.menu-list li a {
+    display: block;
+    padding-left: 25px;
+    cursor: pointer;
+    color: inherit;
+    text-decoration: none;
+}
+
+.menu-list li {
+    height: 35px;
+    line-height: 35px;
+    position: relative;
+}
+
+.easyui-textbox,.easyui-combobox{
+    height: 30px;
+    line-height: 30px;
+    width: 250px;
+}
+.must{
+    color:red;
+    width: 10px;
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.no-style{
+    border-color: #95B8E7;
+    background-color: white;
+}
+.no-style input{
+    background-color: white;
+}
